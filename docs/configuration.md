@@ -1,19 +1,17 @@
-(api_v2_configuration)=
-
 # Wagtail API v2 configuration guide
 
 This section of the docs will show you how to set up a public API for your
 Wagtail site.
 
 Even though the API is built on Django REST Framework, you do not need to
-install this manually as it is already a dependency of Wagtail.
+install this manually as it is already a dependency of this package.
 
 ## Basic configuration
 
 ### Enable the app
 
-Firstly, you need to enable Wagtail's API app so Django can see it.
-Add `wagtail.api.v2` to `INSTALLED_APPS` in your Django project settings:
+Firstly, you need to enable the API app so Django can see it.
+Add `wagtailapi_legacy.v2` to `INSTALLED_APPS` in your Django project settings:
 
 ```python
 # settings.py
@@ -21,7 +19,7 @@ Add `wagtail.api.v2` to `INSTALLED_APPS` in your Django project settings:
 INSTALLED_APPS = [
     ...
 
-    'wagtail.api.v2',
+    'wagtailapi_legacy.v2',
 
     ...
 ]
@@ -31,8 +29,6 @@ Optionally, you may also want to add `rest_framework` to `INSTALLED_APPS`.
 This would make the API browsable when viewed from a web browser but is not
 required for basic JSON-formatted output.
 
-(api_v2_configure_endpoints)=
-
 ### Configure endpoints
 
 Next, it's time to configure which content will be exposed on the API. Each
@@ -40,12 +36,12 @@ content type (such as pages, images and documents) has its own endpoint.
 Endpoints are combined by a router, which provides the url configuration you
 can hook into the rest of your project.
 
-Wagtail provides multiple endpoint classes you can use:
+This package provides multiple endpoint classes you can use:
 
--   Pages `wagtail.api.v2.views.PagesAPIViewSet`
--   Images `wagtail.images.api.v2.views.ImagesAPIViewSet`
--   Documents `wagtail.documents.api.v2.views.DocumentsAPIViewSet`
--   Redirects `wagtail.contrib.redirects.api.RedirectsAPIViewSet` see [](redirects_api_endpoint)
+-   Pages `wagtailapi_legacy.v2.views.PagesAPIViewSet`
+-   Images `wagtailapi_legacy.v2.images.views.ImagesAPIViewSet`
+-   Documents `wagtailapi_legacy.v2.documents.views.DocumentsAPIViewSet`
+-   Redirects `wagtailapi_legacy.v2.redirects.views.RedirectsAPIViewSet` see [Redirects](#redirects)
 
 You can subclass any of these endpoint classes to customize their functionality.
 For example, in this case, if you need to change the `APIViewSet` by setting a desired renderer class:
@@ -95,7 +91,7 @@ api_router.register_endpoint("pages", CustomFieldsAPIViewSet)
 ```
 
 Additionally, there is a base endpoint class you can use for adding different
-content types to the API: `wagtail.api.v2.views.BaseAPIViewSet`
+content types to the API: `wagtailapi_legacy.v2.views.BaseAPIViewSet`
 
 For this example, we will create an API that includes all three builtin content
 types in their default configuration:
@@ -103,10 +99,10 @@ types in their default configuration:
 ```python
 # api.py
 
-from wagtail.api.v2.views import PagesAPIViewSet
-from wagtail.api.v2.router import WagtailAPIRouter
-from wagtail.images.api.v2.views import ImagesAPIViewSet
-from wagtail.documents.api.v2.views import DocumentsAPIViewSet
+from wagtailapi_legacy.v2.views import PagesAPIViewSet
+from wagtailapi_legacy.v2.router import WagtailAPIRouter
+from wagtailapi_legacy.v2.images.views import ImagesAPIViewSet
+from wagtailapi_legacy.v2.documents.views import DocumentsAPIViewSet
 
 # Create the router. "wagtailapi" is the URL namespace
 api_router = WagtailAPIRouter("wagtailapi")
@@ -141,8 +137,6 @@ urlpatterns = [
 
 With this configuration, pages will be available at `/api/v2/pages/`, images
 at `/api/v2/images/` and documents at `/api/v2/documents/`
-
-(apiv2_page_fields_configuration)=
 
 ### Adding custom page fields
 
@@ -184,9 +178,7 @@ class BlogPage(Page):
 This will make `published_date`, `body`, `feed_image` and a list of
 `authors` with the `name` field available in the API. But to access these
 fields, you must select the `blog.BlogPage` type using the `?type`
-[parameter in the API itself](apiv2_custom_page_fields).
-
-(form_page_fields_api_field)=
+[parameter in the API itself](usage.md#custom-page-fields-in-the-api).
 
 ### Adding form fields to the API
 
@@ -254,8 +246,6 @@ This adds two fields to the API (other fields omitted for brevity):
 }
 ```
 
-(apiv2_streamfield_configuration)=
-
 ### StreamField blocks in the API
 
 When a StreamField block’s value is serialized for the API, by default Wagtail uses the same representation as it does for the database. For example, this model:
@@ -309,11 +299,9 @@ class APIImageChooserBlock(ImageChooserBlock):
 
 The API now returns the full image data inline, with no second request needed. This approach works for all blocks based on StructBlock, no matter where they are in the block hierarchy.
 
-(api_v2_rich_text)=
-
 ### Rich text in the API
 
-By default, `RichTextField` values are serialized in Wagtail's database HTML format, described in [](rich_text_internals). This is useful when the API client will directly manipulate the identifiers referencing external data within rich text, such as fetching more data about page links or images by ID.
+By default, `RichTextField` values are serialized in Wagtail's database HTML format, described in [Rich text internals](https://docs.wagtail.org/en/stable/extending/rich_text_internals.html). This is useful when the API client will directly manipulate the identifiers referencing external data within rich text, such as fetching more data about page links or images by ID.
 
 To return display-ready HTML instead (equivalent to the `|richtext` template filter), use the `?rich_text_format=html` query parameter or set the project-wide default with `WAGTAILAPI_RICH_TEXT_FORMAT = 'html'` in your settings. The default format is `db_html`.
 
@@ -336,8 +324,6 @@ We can then change our `api_fields` definition so `body` uses this new serialize
 (APIField("body", serializer=RichTextSerializer()),)
 ```
 
-(api_v2_images)=
-
 ### Images in the API
 
 The `ImageRenditionField` serializer
@@ -349,7 +335,7 @@ For example:
 
 ```python
 from wagtail.api import APIField
-from wagtail.images.api.fields import ImageRenditionField
+from wagtailapi_legacy.v2.images.fields import ImageRenditionField
 
 
 class BlogPage(Page):
@@ -398,11 +384,11 @@ Note: `download_url` is the original uploaded file path, whereas
 When you are using another storage backend, such as S3, `download_url` will return
 a URL to the image if your media files are properly configured.
 
-For cases where the source image set may contain SVGs, the `ImageRenditionField` constructor takes a `preserve_svg` argument. The behavior of `ImageRenditionField` when `preserve_svg` is `True` is as described for the `image` template tag's `preserve-svg` argument (see the documentation on [](svg_images)).
+For cases where the source image set may contain SVGs, the `ImageRenditionField` constructor takes a `preserve_svg` argument. The behavior of `ImageRenditionField` when `preserve_svg` is `True` is as described for the `image` template tag's `preserve-svg` argument (see the documentation on [SVG images](https://docs.wagtail.org/en/stable/topics/images.html#svg-images)).
 
 #### Filter specifications
 
-The `filter_spec` parameter in `ImageRenditionField` determines how the image will be resized and processed. For a complete list of available operations and their syntax, see the [filter specifications documentation](../../../topics/images).
+The `filter_spec` parameter in `ImageRenditionField` determines how the image will be resized and processed. For a complete list of available operations and their syntax, see the [filter specifications documentation](https://docs.wagtail.org/en/stable/topics/images.html).
 
 Common examples include:
 
@@ -424,6 +410,23 @@ APIField(
 ```
 
 The generated rendition URLs will be included in the API response, allowing clients to directly access optimized versions of images without additional processing.
+
+### Redirects
+
+If you use [`wagtail.contrib.redirects`](https://docs.wagtail.org/en/stable/reference/contrib/redirects.html), you can create an API endpoint to retrieve redirects or find specific redirects by path.
+
+Add the following code to add the redirects endpoint:
+
+```python
+from wagtailapi_legacy.v2.redirects.views import RedirectsAPIViewSet
+
+api_router.register_endpoint("redirects", RedirectsAPIViewSet)
+```
+
+With this configuration, redirects will be available at `/api/v2/redirects/`.
+
+Specific redirects by path can be resolved with `/api/v2/redirects/find/?html_path=<path>`,
+which will return either a `200` response with the redirects detail, or a `404` not found response.
 
 ### Authentication
 
@@ -500,4 +503,4 @@ endpoints.
 
 This allows you to change the maximum number of results a user can request at a
 time. This applies to all endpoints. Set to `None` for no limit.
-Combine with [`?limit` and `?offset` query parameters](apiv2_pagination) to retrieve the desired number of results.
+Combine with [`?limit` and `?offset` query parameters](usage.md#pagination) to retrieve the desired number of results.

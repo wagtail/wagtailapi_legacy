@@ -1,5 +1,3 @@
-(api_v2_usage)=
-
 # Wagtail API v2 usage guide
 
 The Wagtail API module exposes a public, read-only, JSON-formatted API which
@@ -7,16 +5,7 @@ can be used by external clients (such as a mobile app) or the site's frontend.
 
 This document is intended for developers using the API exposed by Wagtail. For
 documentation on how to enable the API module in your Wagtail site, see
-[Wagtail API v2 configuration guide](/advanced_topics/api/v2/configuration)
-
-Contents
-
-```{contents}
----
-local:
-depth: 3
----
-```
+[Wagtail API v2 configuration guide](configuration.md)
 
 ## Fetching content
 
@@ -27,10 +16,9 @@ following endpoints:
 -   Images `/api/v2/images/`
 -   Documents `/api/v2/documents/`
 
-```{note}
-The available endpoints and their URLs may vary from site to site, depending
-on how the API has been configured.
-```
+> [!NOTE]
+> The available endpoints and their URLs may vary from site to site, depending
+> on how the API has been configured.
 
 ### Example response
 
@@ -68,8 +56,6 @@ Content-Type: application/json
 }
 ```
 
-(apiv2_custom_page_fields)=
-
 ### Custom page fields in the API
 
 Wagtail sites contain many page types, each with their own set of fields. The
@@ -82,7 +68,7 @@ type but will also make all the exported custom fields for that type available
 in the API.
 
 For example, to access the `published_date`, `body` and `authors` fields
-on the `blog.BlogPage` model in the [configuration docs](apiv2_page_fields_configuration):
+on the `blog.BlogPage` model in the [configuration docs](configuration.md#adding-custom-page-fields):
 
 ```
 GET /api/v2/pages/?type=blog.BlogPage&fields=published_date,body,authors(name)
@@ -122,18 +108,15 @@ Content-Type: application/json
 }
 ```
 
-```{note}
-Only fields that have been explicitly exported by the developer may be used
-in the API. This is done by adding a `api_fields` attribute to the page
-model. You can read about configuration [here](apiv2_page_fields_configuration).
-```
+> [!NOTE]
+> Only fields that have been explicitly exported by the developer may be used
+> in the API. This is done by adding a `api_fields` attribute to the page
+> model. You can read about configuration [here](configuration.md#adding-custom-page-fields).
 
 This doesn't apply to images/documents as there is only one model exposed in
 those endpoints. But for projects that have customized image/document models,
 the `api_fields` attribute can be used to export any custom fields into the
 API.
-
-(apiv2_pagination)=
 
 ### Pagination
 
@@ -159,14 +142,11 @@ Content-Type: application/json
 }
 ```
 
-```{note}
-There may be a maximum value for the `?limit` parameter. This can be
-modified in your project settings by setting `WAGTAILAPI_LIMIT_MAX` to
-either a number (the new maximum value) or `None` (which disables maximum
-value check).
-```
-
-(api_v2_usage_ordering)=
+> [!NOTE]
+> There may be a maximum value for the `?limit` parameter. This can be
+> modified in your project settings by setting `WAGTAILAPI_LIMIT_MAX` to
+> either a number (the new maximum value) or `None` (which disables maximum
+> value check).
 
 ### Ordering
 
@@ -208,10 +188,9 @@ Content-Type: application/json
 }
 ```
 
-```{note}
-Ordering is case-sensitive so lowercase letters are always ordered after
-uppercase letters when in ascending order.
-```
+> [!NOTE]
+> Ordering is case-sensitive so lowercase letters are always ordered after
+> uppercase letters when in ascending order.
 
 #### Multiple ordering
 
@@ -255,12 +234,11 @@ Content-Type: application/json
 }
 ```
 
-```{note}
-It's not possible to use `?offset` while ordering randomly because
-consistent random ordering cannot be guaranteed over multiple requests
-(so requests for subsequent pages may return results that also appeared in
-previous pages).
-```
+> [!NOTE]
+> It's not possible to use `?offset` while ordering randomly because
+> consistent random ordering cannot be guaranteed over multiple requests
+> (so requests for subsequent pages may return results that also appeared in
+> previous pages).
 
 ### Filtering
 
@@ -294,8 +272,6 @@ Content-Type: application/json
     ]
 }
 ```
-
-(apiv2_filter_by_tree_position)=
 
 ### Filtering by tree position (pages only)
 
@@ -358,8 +334,6 @@ the current page back to the site's root page.
 The `?descendant_of` filter takes the id of a page and filters the list
 to only include descendants of that page (children, grandchildren, etc.).
 
-(api_filtering_pages_by_site)=
-
 ### Filtering pages by site
 
 By default, the API will look for the site based on the hostname of the request.
@@ -407,12 +381,10 @@ using `?search` in conjunction with `?order` (as this disables ranking).
 
 For example: `?search=James+Joyce&order=-first_published_at&search_operator=and`
 
-(apiv2_i18n_filters)=
-
 ### Special filters for internationalized sites
 
 When `WAGTAIL_I18N_ENABLED` is set to `True` (see
-[](enabling_internationalisation) for more details) two new filters are made
+[Enabling internationalisation](https://docs.wagtail.org/en/stable/advanced_topics/i18n.html#enabling-internationalisation) for more details) two new filters are made
 available on the pages endpoint.
 
 #### Filtering pages by locale
@@ -550,8 +522,6 @@ All exported fields will be returned in the response by default. You can use the
 For example: `/api/v2/pages/1/?fields=_,title,body` will return just the
 `title` and `body` of the page with the id of 1.
 
-(apiv2_finding_pages_by_path)=
-
 ### Finding pages by HTML path
 
 You can find an individual page by its HTML path using the `/api/v2/pages/find/?html_path=<path>` view.
@@ -569,11 +539,10 @@ These fields are returned by every endpoint.
 **`id` (number)**
 The unique ID of the object
 
-```{note}
-Except for page types, every other content type has its own ID space
-so you must combine this with the ``type`` field in order to get a
-unique identifier for an object.
-```
+> [!NOTE]
+> Except for page types, every other content type has its own ID space
+> so you must combine this with the ``type`` field in order to get a
+> unique identifier for an object.
 
 **`type` (string)**
 The type of the object in `app_label.ModelName` format
