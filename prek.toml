@@ -38,17 +38,3 @@ name = "ruff-format"
 entry = "uv run ruff format --force-exclude"
 language = "system"
 types_or = ["python"]
-
-[[repos.hooks]]
-id = "lint-format"
-name = "npm run lint:format"
-entry = "npm run lint:format"
-language = "system"
-types_or = ["css", "scss", "javascript", "ts", "tsx", "json", "yaml"]
-
-[[repos.hooks]]
-id = "lint-css"
-name = "npm run lint:css"
-entry = "npm run lint:css"
-language = "system"
-types_or = ["css", "scss"]

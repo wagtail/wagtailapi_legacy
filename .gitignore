@@ -18,7 +18,6 @@ __pycache__/
 /site
 *.db
 *.sqlite3
-/node_modules
 /test-static
 /test-media
 *.mo

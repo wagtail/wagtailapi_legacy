@@ -1,12 +1,12 @@
 # Task runner: https://github.com/casey/just
-# Requires: `uv`, `npm`, and `just`.
+# Requires: `uv`, `prek`, and `just`.
 # Editable package path under `src/` (passed to `coverage run --source`).
 
 # List all the justfile recipes.
 help:
     just --list --list-prefix 'just '
 
-# Remove all the Python and Node.js cache files.
+# Remove all the Python cache files.
 clean-pyc:
     find . -name '*.pyc' -exec rm -f {} +
     find . -name '*.pyo' -exec rm -f {} +
@@ -15,34 +15,19 @@ clean-pyc:
 # Install the dependencies.
 install: clean-pyc
     uv sync --dev
-    npm ci
     uv run prek
 
-# Lint the server code with uv.
-lint-server:
+# Run all linters.
+lint:
     uv run ruff format --check .
     uv run ruff check .
-    SKIP=ruff-check,ruff-format,lint-css,lint-format uv run prek run --all-files
-
-# Lint the client code with Prettier.
-lint-client:
-    npm run lint --loglevel silent
-
-# Run all linters.
-lint: lint-server lint-client
-
-# Format the server code with uv.
-format-server:
-    uv run ruff check . --fix
-    uv run ruff format .
-    SKIP=ruff-check,ruff-format,lint-css,lint-format uv run prek run --all-files
-
-# Format the client code with Prettier.
-format-client:
-    npm run format
+    SKIP=ruff-check,ruff-format uv run prek run --all-files
 
 # Run all formatters.
-format: format-server format-client
+format:
+    uv run ruff check . --fix
+    uv run ruff format .
+    SKIP=ruff-check,ruff-format uv run prek run --all-files
 
 # Run tests with pytest.
 test:
