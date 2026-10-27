@@ -6,8 +6,6 @@ readme = "README.md"
 license = "BSD-3-Clause"
 license-files = ["LICENSE"]
 classifiers = [
-    # Update this based on your project's status.
-    # See: https://pypi.org/classifiers/
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
@@ -42,8 +40,6 @@ Repository = "https://github.com/wagtail/wagtailapi_legacy"
 Changelog = "https://github.com/wagtail/wagtailapi_legacy/blob/main/CHANGELOG.md"
 Documentation = "https://github.com/wagtail/wagtailapi_legacy/tree/main/docs"
 Issues = "https://github.com/wagtail/wagtailapi_legacy/issues"
-# Add funding link if needed.
-# Funding = "https://github.com/wagtail/wagtailapi_legacy"
 
 [dependency-groups]
 dev = [

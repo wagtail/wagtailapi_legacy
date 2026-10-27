@@ -1,6 +1,5 @@
 # Task runner: https://github.com/casey/just
 # Requires: `uv`, `prek`, and `just`.
-# Editable package path under `src/` (passed to `coverage run --source`).
 
 # List all the justfile recipes.
 help:
