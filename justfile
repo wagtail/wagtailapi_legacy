@@ -59,7 +59,7 @@ test-highest-deps:
 
 # Run tests with coverage.
 coverage:
-    uv run pytest --cov src/my_project_name
+    uv run pytest --cov src/wagtailapi_legacy
     uv run coverage report -m
     uv run coverage html
 
@@ -82,12 +82,3 @@ shell:
 
 # Run the demo application.
 demo: migrate load_initial_data runserver
-
-# Extract messages for translation
-makemessages *args:
-    @# Pass any additional arguments to the `makemessages` command, e.g. `just messages -l=es`.
-    @# default to `--all` if no arguments are provided.
-    uv run ./demo/manage.py makemessages {{ if args != "" { args } else { "--all" } }}
-
-compilemessages:
-    cd src && uv run ../demo/manage.py compilemessages

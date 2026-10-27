@@ -4,6 +4,7 @@ version = "2.0.0"
 description = "Legacy versions of the Wagtail API that are no longer maintained in Wagtail core"
 readme = "README.md"
 license = "BSD-3-Clause"
+license-files = ["LICENSE"]
 classifiers = [
     # Update this based on your project's status.
     # See: https://pypi.org/classifiers/

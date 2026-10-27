@@ -26,7 +26,7 @@ BASE_DIR = PROJECT_DIR.parent
 # Application definition
 
 INSTALLED_APPS = [
-    "wagtailapi_legacy",
+    "wagtailapi_legacy.v2",
     "blog",
     "home",
     "search",
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "django_filters",
+    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
