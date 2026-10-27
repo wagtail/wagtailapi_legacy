@@ -2,7 +2,6 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from django.test import TestCase, override_settings
 from django.urls import reverse
-
 from wagtail.documents import models
 
 

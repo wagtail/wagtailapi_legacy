@@ -5,7 +5,6 @@ from modelcluster.models import get_all_child_relations
 from rest_framework import relations, serializers
 from rest_framework.fields import Field, SkipField
 from taggit.managers import _TaggableManager
-
 from wagtail import fields as wagtailcore_fields
 from wagtail.api.rich_text import APIRichText
 

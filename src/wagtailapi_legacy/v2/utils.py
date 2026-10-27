@@ -1,9 +1,10 @@
 import swapper
-from django.db.models import Q
 
+from django.db.models import Q
 from wagtail.api.utils import get_full_url
 from wagtail.coreutils import resolve_model_string
 from wagtail.models import Collection, CollectionViewRestriction
+
 
 Page = swapper.load_model("wagtailcore", "Page")
 

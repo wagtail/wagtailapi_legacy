@@ -1,6 +1,5 @@
 from django.db.models.signals import post_delete, post_save
 from django.urls import reverse
-
 from wagtail.api.utils import get_base_url
 from wagtail.contrib.frontend_cache.utils import purge_url_from_cache
 from wagtail.documents import get_document_model

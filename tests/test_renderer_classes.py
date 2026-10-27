@@ -1,13 +1,14 @@
 import json
+
 from unittest.mock import patch
 
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
-
-from wagtailapi_legacy.v2.views import BaseAPIViewSet
 from wagtail.test.numberformat import ignore_numberformat
 from wagtail.test.utils import WagtailTestUtils
+
+from wagtailapi_legacy.v2.views import BaseAPIViewSet
 
 
 class TestBaseAPIViewSetRendererClasses(WagtailTestUtils, TestCase):

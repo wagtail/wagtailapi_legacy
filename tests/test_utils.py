@@ -1,6 +1,5 @@
 from django.test import RequestFactory, TestCase, override_settings
 from django.utils.encoding import force_bytes
-
 from wagtail.api.utils import get_base_url
 from wagtail.models import Site
 

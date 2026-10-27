@@ -22,6 +22,10 @@ ignore = [
     "E501",
     # DJ008: Model does not define `__str__` method
     "DJ008",
+    # UP031, UP032: Use format specifiers / f-strings. Kept as-is to stay
+    # close to the original Wagtail code, which makes porting fixes easier.
+    "UP031",
+    "UP032",
 ]
 
 
@@ -35,7 +39,9 @@ lines-between-types = 1
 "tests/**/*.py" = [
 
     "S101",    # asserts allowed in tests
-    "ARG",     # unused function args (pytest fixtures)
+    "S105",    # hardcoded passwords allowed in tests
+    "S106",    # hardcoded passwords allowed in tests
+    "ARG",    # unused function args (pytest fixtures)
     "FBT",     # booleans as positional arguments (@pytest.mark.parametrize)
     "PLR2004", # magic value used in comparison
     "S311",    # standard pseudo-random generators are not suitable for cryptographic purposes

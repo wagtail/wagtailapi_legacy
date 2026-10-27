@@ -1,6 +1,5 @@
 from django.test import TestCase
 from django.urls import reverse
-
 from wagtail.contrib.redirects.models import Redirect
 from wagtail.models import Site
 from wagtail.test.utils import Page

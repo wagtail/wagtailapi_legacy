@@ -1,10 +1,12 @@
 import collections
 import json
 import unittest
+
 from io import StringIO
 from unittest import mock
 
 import swapper
+
 from django.contrib.auth.models import Group
 from django.contrib.contenttypes.models import ContentType
 from django.core import management
@@ -12,14 +14,14 @@ from django.test import TestCase, TransactionTestCase, tag
 from django.test.utils import override_settings
 from django.urls import reverse
 from rest_framework.test import APIClient
-
-from wagtailapi_legacy.v2 import signal_handlers
-from wagtailapi_legacy.v2.views import PagesAPIViewSet
 from wagtail.models import Locale, Site
 from wagtail.models.view_restrictions import BaseViewRestriction
 from wagtail.test.demosite import models
 from wagtail.test.testapp.models import StreamPage
 from wagtail.test.utils import Page, PageFixturesMixin, WagtailTestUtils
+
+from wagtailapi_legacy.v2 import signal_handlers
+from wagtailapi_legacy.v2.views import PagesAPIViewSet
 
 
 def get_total_page_count():

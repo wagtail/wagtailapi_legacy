@@ -1,8 +1,9 @@
+from wagtail.images import get_image_model
+
 from wagtailapi_legacy.v2.filters import FieldsFilter, OrderingFilter, SearchFilter
 from wagtailapi_legacy.v2.utils import get_restricted_collection_ids
 from wagtailapi_legacy.v2.views import BaseAPIViewSet
 
-from wagtail.images import get_image_model
 from .serializers import ImageSerializer
 
 

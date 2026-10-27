@@ -1,6 +1,7 @@
 from collections import OrderedDict
 
 import swapper
+
 from django.apps import apps
 from django.conf import settings
 from django.core.exceptions import FieldDoesNotExist
@@ -13,7 +14,6 @@ from rest_framework import status
 from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-
 from wagtail.api import APIField
 from wagtail.api.querysets import get_public_pages_queryset
 from wagtail.api.rich_text import APIRichText, RichTextFormatError
@@ -37,6 +37,7 @@ from .utils import (
     page_models_from_string,
     parse_fields_parameter,
 )
+
 
 Page = swapper.load_model("wagtailcore", "Page")
 
