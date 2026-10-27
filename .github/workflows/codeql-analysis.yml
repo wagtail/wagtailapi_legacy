@@ -36,8 +36,6 @@ jobs:
           # https://docs.github.com/en/code-security/reference/code-scanning/workflow-configuration-options#languages-to-be-analyzed
           - language: actions
             build-mode: none
-          - language: javascript-typescript
-            build-mode: none
           - language: python
             build-mode: none
 

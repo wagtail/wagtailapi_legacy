@@ -8,16 +8,13 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 end_of_line = lf
 
-[Makefile]
-indent_style = tab
-
 [*.py]
 max_line_length = 88
 
-[*.{html,rst,md}]
+[*.{html,md}]
 indent_size = 4
 
-[*.{mjs,js,ts,tsx,json,jsonc,yml,yaml,toml,css,scss}]
+[*.{js,json,jsonc,yml,yaml,toml,css}]
 indent_size = 2
 
 [*.md]

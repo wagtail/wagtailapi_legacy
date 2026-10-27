@@ -31,12 +31,6 @@
       "groupName": "CI configuration dependencies",
     },
 
-    // Auto-merge npm package updates.
-    {
-      "matchManagers": ["npm"],
-      "automerge": true,
-    },
-
     // Auto-merge all Python dependencies…
     {
       "matchManagers": ["pep621"],

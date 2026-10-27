@@ -11,16 +11,12 @@ __pycache__/
 *.egg-info
 /.coverage
 /htmlcov
-/.tox
 /.venv
 /venv
 /.vscode
-/site
 *.db
 *.sqlite3
-/node_modules
 /test-static
 /test-media
-*.mo
 
 demo/media

@@ -27,17 +27,13 @@ just demo
 Here are the available scripts for the project:
 
 ```sh
-just clean-pyc         # Remove all the Python and Node.js cache files.
+just clean-pyc         # Remove all the Python cache files.
 just coverage          # Run tests with coverage.
 just demo              # Run the demo application.
 just format            # Run all formatters.
-just format-client     # Format the client code with Prettier.
-just format-server     # Format the server code with uv.
 just help              # List all the justfile recipes.
 just install           # Install the dependencies.
 just lint              # Run all linters.
-just lint-client       # Lint the client code with Prettier.
-just lint-server       # Lint the server code with uv.
 just load_initial_data # Load the initial data into the database.
 just migrate           # Make migrations and migrate the database.
 just runserver         # Run the development server at the given host and port.
@@ -53,7 +49,7 @@ Test modules live in `tests/`. The test settings in `src/wagtailapi_legacy/test/
 
 The project uses GitHub Actions for CI. On every push and pull request, the CI will:
 
-- Run linters (Ruff, prek, Prettier).
+- Run linters (Ruff, prek).
 - Run tests with coverage.
 - Run tests against the lowest supported dependency versions.
 - Run tests against the latest dependency versions.
