@@ -32,11 +32,11 @@ Always run `just lint` and `just test` before considering work complete.
 
 ```
 src/wagtailapi_legacy/v2/    # Package source code
-src/wagtailapi_legacy/test/  # Django test app with settings, URLs
-tests/                     # Test modules (pytest)
-docs/                      # Configuration and usage guides
-demo/                      # Demo Wagtail site for development
-.github/workflows/         # CI: linting, tests, nightly builds, publishing
+src/wagtailapi_legacy/test/  # Test settings and URLs
+tests/                       # Test modules (pytest)
+docs/                        # Configuration and usage guides
+demo/                        # Demo Wagtail site for development
+.github/workflows/           # CI: linting, tests, nightly builds, publishing
 ```
 
 ## Guidelines
