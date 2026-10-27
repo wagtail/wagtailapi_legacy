@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
 
-from wagtail.api.v2.views import BaseAPIViewSet
+from wagtailapi_legacy.v2.views import BaseAPIViewSet
 from wagtail.test.numberformat import ignore_numberformat
 from wagtail.test.utils import WagtailTestUtils
 
@@ -20,7 +20,7 @@ class TestBaseAPIViewSetRendererClasses(WagtailTestUtils, TestCase):
         # Should have both renderers when rest_framework is installed
         self.assertEqual(renderer_classes, [JSONRenderer, BrowsableAPIRenderer])
 
-    @patch("wagtail.api.v2.views.apps.is_installed")
+    @patch("wagtailapi_legacy.v2.views.apps.is_installed")
     def test_renderer_classes_without_rest_framework(self, mock_is_installed):
         """Test that only JSONRenderer is included when rest_framework is not installed."""
 

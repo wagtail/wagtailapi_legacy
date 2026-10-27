@@ -1,13 +1,13 @@
 [project]
 name = "wagtailapi-legacy"
-version = "0.1.0"
+version = "2.0.0"
 description = "Legacy versions of the Wagtail API that are no longer maintained in Wagtail core"
 readme = "README.md"
 license = "BSD-3-Clause"
 classifiers = [
     # Update this based on your project's status.
     # See: https://pypi.org/classifiers/
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
@@ -22,7 +22,6 @@ classifiers = [
     "Framework :: Django :: 6.0",
     "Framework :: Django :: 6.1",
     "Framework :: Wagtail",
-    "Framework :: Wagtail :: 7",
     "Framework :: Wagtail :: 8",
 ]
 # See: https://devguide.python.org/versions/#supported-versions
@@ -32,21 +31,24 @@ dependencies = [
     "django>=5.2",
     # https://github.com/wagtail/wagtail/wiki/Release-schedule
     # https://docs.wagtail.org/en/latest/releases/upgrading.html#compatible-django-python-versions
-    "wagtail>=7.0",
+    "wagtail>=8.1rc1",
+    "djangorestframework>=3.18.0,<4.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/org-name-or-username/wagtailapi-legacy"
-Repository = "https://github.com/org-name-or-username/wagtailapi-legacy"
-Changelog = "https://github.com/org-name-or-username/wagtailapi-legacy/blob/main/CHANGELOG.md"
-Documentation = "https://github.com/org-name-or-username/wagtailapi-legacy/tree/main/docs"
-Issues = "https://github.com/org-name-or-username/wagtailapi-legacy/issues"
+Homepage = "https://github.com/wagtail/wagtailapi_legacy"
+Repository = "https://github.com/wagtail/wagtailapi_legacy"
+Changelog = "https://github.com/wagtail/wagtailapi_legacy/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/wagtail/wagtailapi_legacy/tree/main/docs"
+Issues = "https://github.com/wagtail/wagtailapi_legacy/issues"
 # Add funding link if needed.
-# Funding = "https://github.com/org-name-or-username/wagtailapi-legacy"
+# Funding = "https://github.com/wagtail/wagtailapi_legacy"
 
 [dependency-groups]
 dev = [
     "dj-database-url>=3.1.2",
+    "factory-boy>=3.2",
+    "jinja2>=3.0,<3.2",
     "pytest>=8.1.1",
     "pytest-cov>=7.1.0",
     "pytest-django>=4.12.0",
@@ -60,9 +62,7 @@ build-backend = "uv_build"
 [tool.uv.build-backend]
 module-name = "wagtailapi_legacy"
 source-exclude = [
-    "wagtailapi_legacy/static_src",
     "wagtailapi_legacy/test",
-    "wagtailapi_legacy/static/wagtailapi_legacy/js/.gitignore",
     "testmanage.py",
     ".*",
     "*.js",
@@ -74,3 +74,4 @@ source-exclude = [
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "wagtailapi_legacy.test.settings"
 testpaths = ["tests"]
+markers = ["transaction: tests that use TransactionTestCase"]

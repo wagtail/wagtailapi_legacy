@@ -1,9 +1,9 @@
 from django.http import Http404
 from rest_framework import serializers
 
-from wagtail.api.v2.filters import FieldsFilter, OrderingFilter, SearchFilter
-from wagtail.api.v2.serializers import BaseSerializer
-from wagtail.api.v2.views import BaseAPIViewSet
+from wagtailapi_legacy.v2.filters import FieldsFilter, OrderingFilter, SearchFilter
+from wagtailapi_legacy.v2.serializers import BaseSerializer
+from wagtailapi_legacy.v2.views import BaseAPIViewSet
 from wagtail.contrib.redirects.middleware import get_redirect
 from wagtail.contrib.redirects.models import Redirect
 

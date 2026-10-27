@@ -3,8 +3,8 @@ from typing import Literal
 from rest_framework.fields import Field
 from typing_extensions import TypedDict
 
-from ..models import SourceImageIOError
-from ..utils import to_svg_safe_spec
+from wagtail.images.models import SourceImageIOError
+from wagtail.images.utils import to_svg_safe_spec
 
 
 class ImageRenditionDict(TypedDict):

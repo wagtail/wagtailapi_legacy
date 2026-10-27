@@ -4,7 +4,7 @@ from django.utils.encoding import force_bytes
 from wagtail.api.utils import get_base_url
 from wagtail.models import Site
 
-from ..utils import (
+from wagtailapi_legacy.v2.utils import (
     FieldsParameterParseError,
     parse_boolean,
     parse_fields_parameter,

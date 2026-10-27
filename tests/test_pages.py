@@ -13,8 +13,8 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from rest_framework.test import APIClient
 
-from wagtail.api.v2 import signal_handlers
-from wagtail.api.v2.views import PagesAPIViewSet
+from wagtailapi_legacy.v2 import signal_handlers
+from wagtailapi_legacy.v2.views import PagesAPIViewSet
 from wagtail.models import Locale, Site
 from wagtail.models.view_restrictions import BaseViewRestriction
 from wagtail.test.demosite import models
@@ -31,10 +31,6 @@ def get_total_page_count():
         .public()
         .count()
     )
-
-
-class Test10411APIViewSet(PagesAPIViewSet):
-    meta_fields = []
 
 
 class TestPageListing(PageFixturesMixin, WagtailTestUtils, TestCase):

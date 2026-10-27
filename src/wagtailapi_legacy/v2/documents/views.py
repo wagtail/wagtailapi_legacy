@@ -1,8 +1,8 @@
-from wagtail.api.v2.filters import FieldsFilter, OrderingFilter, SearchFilter
-from wagtail.api.v2.utils import get_restricted_collection_ids
-from wagtail.api.v2.views import BaseAPIViewSet
+from wagtailapi_legacy.v2.filters import FieldsFilter, OrderingFilter, SearchFilter
+from wagtailapi_legacy.v2.utils import get_restricted_collection_ids
+from wagtailapi_legacy.v2.views import BaseAPIViewSet
 
-from ... import get_document_model
+from wagtail.documents import get_document_model
 from .serializers import DocumentSerializer
 
 

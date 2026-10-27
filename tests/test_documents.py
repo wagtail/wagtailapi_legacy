@@ -5,7 +5,7 @@ from django.test import TestCase, TransactionTestCase, tag
 from django.test.utils import override_settings
 from django.urls import reverse
 
-from wagtail.api.v2 import signal_handlers
+from wagtailapi_legacy.v2 import signal_handlers
 from wagtail.documents import get_document_model
 from wagtail.models import CollectionViewRestriction
 from wagtail.test.utils import PageFixturesMixin
