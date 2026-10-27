@@ -3,3 +3,6 @@
 #   git config blame.ignoreRevsFile .git-blame-ignore-revs
 # Requires Git > 2.23
 # See https://git-scm.com/docs/git-blame#Documentation/git-blame.txt---ignore-revs-fileltfilegt
+
+# Apply the package's Ruff configuration to the API v2 code
+cb5d31ef223084cfc6e44f6b209ff4679f28064c
