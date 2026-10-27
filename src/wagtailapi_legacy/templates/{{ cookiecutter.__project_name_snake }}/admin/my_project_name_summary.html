@@ -1,0 +1,5 @@
+{% load i18n wagtailadmin_tags %}
+<li>
+    {% icon name="cog" %}
+    <span>{% blocktrans with project_name="{{ cookiecutter.project_name }}" trimmed %}Hello, I am a panel from {{ project_name }}{% endblocktrans %}</span>
+</li>
