@@ -62,14 +62,7 @@ build-backend = "uv_build"
 
 [tool.uv.build-backend]
 module-name = "wagtailapi_legacy"
-source-exclude = [
-    "wagtailapi_legacy/test",
-    ".*",
-    "*.js",
-    "*.json",
-    "*.ini",
-    "*.yml",
-]
+source-exclude = ["wagtailapi_legacy/test"]
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "wagtailapi_legacy.test.settings"

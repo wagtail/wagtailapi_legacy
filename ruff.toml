@@ -1,4 +1,3 @@
-extend-exclude = ["LC_MESSAGES", "locale"]
 line-length = 88
 
 
