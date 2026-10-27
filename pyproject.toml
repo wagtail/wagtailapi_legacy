@@ -64,7 +64,6 @@ build-backend = "uv_build"
 module-name = "wagtailapi_legacy"
 source-exclude = [
     "wagtailapi_legacy/test",
-    "testmanage.py",
     ".*",
     "*.js",
     "*.json",
